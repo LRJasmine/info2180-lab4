@@ -9,7 +9,6 @@ var state = new Array();
 window.onload = function() {
     boards = document.querySelector("#board");
     eachboards = boards.querySelectorAll("div");
-    //attempt = document.getElementsByClassName("square")
     for (var i = 0; i < eachboards.length; i++) {
         eachboards[i].classList.add("square");
     }
@@ -43,18 +42,3 @@ window.onload = function() {
         
             
 }
-//for (var i = 0; i , attempt.length; i++){
-        //this.addEventListener("mouseover", function(){
-/*for (var i = 0; i < this.attempt.length; i++)
-        attempt[i].addEventListener("mouseover", hoverColour);          
-    }
-    
-    }*/
-/*function hoverColour(){
-    
-    for (var i = 0; i , attempt.length; i++){
-        attempt[i].addEventListener("mouseover", function(){
-            attempt[i].classList.add("hover");
-        })
-    }*/
-

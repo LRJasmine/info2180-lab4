@@ -8,12 +8,15 @@ var startTurn;
 var attempt;
 var gameBtn;
 var oldstatus;
+var wincombo = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
+var boardArr = new Array();
 var state = new Array();
 
 //Executes as soon as the page starts loading
 window.onload = function() {
     boards = document.querySelector("#board");
     eachboards = boards.querySelectorAll("div");
+    boardArr = Array.from(eachboards);
     statuses = document.querySelector("#status");
     oldstatus = statuses.innerHTML;
     for (var i = 0; i < eachboards.length; i++) {
@@ -28,15 +31,16 @@ window.onload = function() {
     function playMove(click){
         startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
         if (this.textContent === ""){
+            var eachindex = boardArr.indexOf(this);
             switch (startTurn) {
                 case "X":
                     this.textContent = "X";
-                    state.push("X");
+                    state[eachindex] = "X";
                     winner(statuses);
                     break;
                 case "O":
                     this.textContent = "O";
-                    state.push("O");
+                    state[eachindex] = "O";
                     winner(statuses);
                     break;
                 default:
@@ -71,16 +75,16 @@ window.onload = function() {
 }
 //Declares the winner
 function winner(statuses){
-    state.sort();
-    var resultO = state.filter(i => i === "O").length;
-    var resultX = state.filter(i => i === "X").length;
-    
-    if (resultO >= 3 && resultO > resultX){
-        statuses.classList.add("you-won");
-        statuses.textContent = "Congratulations! O is the Winner!";
-    }else if (resultX >= 3 && resultX > resultO){
-        statuses.classList.add("you-won");
-        statuses.textContent = "Congratulations! X is the Winner!";
+    for (i = 0; i < wincombo.length; i++){
+        var ind = wincombo[i]
+        if (state[ind[0]] === "X" && state[ind[1]]=== "X" && state[ind[2]]==="X"){
+            statuses.classList.add("you-won");
+            statuses.textContent = "Congratulations! X is the Winner!";
+        }
+        else if (state[ind[0]] === "O" && state[ind[1]]=== "O" && state[ind[2]]==="O"){
+            statuses.classList.add("you-won");
+            statuses.textContent = "Congratulations! O is the Winner!";
+        }
     }
 }
 

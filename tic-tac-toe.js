@@ -23,20 +23,25 @@ window.onload = function() {
     }
     function playMove(click){
         startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
-        switch (startTurn) {
-            case "X":
-                this.textContent= "X";
-                state.push("X");
-                winner(statuses);
-                break;
-            case "O":
-                this.textContent = "O";
-                state.push("O");
-                winner(statuses);
-                break;
-            default:
-        
+        if (this.textContent === ""){
+            switch (startTurn) {
+                case "X":
+                    this.textContent = "X";
+                    state.push("X");
+                    winner(statuses);
+                    break;
+                case "O":
+                    this.textContent = "O";
+                    state.push("O");
+                    winner(statuses);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            alert("A play was already made here. Please try somewhere else.");
         }
+        
     }
     gameBtn = document.getElementsByClassName("btn")[0];
     gameBtn.addEventListener("click",restartGame);

@@ -4,12 +4,15 @@ var statuses;
 var eachboards;
 var startTurn;
 var attempt;
+var gameBtn;
+var oldstatus;
 var state = new Array();
 
 window.onload = function() {
     boards = document.querySelector("#board");
     eachboards = boards.querySelectorAll("div");
     statuses = document.querySelector("#status");
+    oldstatus = statuses.innerHTML;
     for (var i = 0; i < eachboards.length; i++) {
         eachboards[i].classList.add("square");
     }
@@ -35,6 +38,16 @@ window.onload = function() {
         
         }
     }
+    gameBtn = document.getElementsByClassName("btn")[0];
+    gameBtn.addEventListener("click",restartGame);
+    function restartGame(click){
+        for (var i = 0; i < eachboards.length; i++){
+            eachboards[i].textContent = "";
+        }
+        statuses.classList.remove("you-won");
+        statuses.textContent = oldstatus;
+        state.length = 0;
+    }
     function hoverColour(mouseover){
         this.classList.add("hover");
     }
@@ -57,3 +70,4 @@ function winner(statuses){
         statuses.textContent = "Congratulations! X is the Winner!";
     }
 }
+

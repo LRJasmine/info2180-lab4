@@ -34,11 +34,13 @@ window.onload = function() {
             var eachindex = boardArr.indexOf(this);
             switch (startTurn) {
                 case "X":
+                    this.classList.add("X");
                     this.textContent = "X";
                     state[eachindex] = "X";
                     winner(statuses);
                     break;
                 case "O":
+                    this.classList.add("O");
                     this.textContent = "O";
                     state[eachindex] = "O";
                     winner(statuses);
@@ -53,6 +55,7 @@ window.onload = function() {
         
     }
     gameBtn = document.getElementsByClassName("btn")[0];
+    gameBtn.setAttribute("id", "hover");
     gameBtn.addEventListener("click",restartGame);
     //Restarts the game
     function restartGame(click){
@@ -66,6 +69,10 @@ window.onload = function() {
     //Changes colour of grid squares when mouse hovers
     function hoverColour(mouseover){
         this.classList.add("hover");
+        if (this.innerHTML == "O"){
+            this.classList.add("O");
+        }
+        
     }
     //Restores the colour of the grid squares when the mouse leaves
     function hoverColour2(mouseleave){
